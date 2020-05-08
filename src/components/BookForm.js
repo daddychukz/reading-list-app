@@ -1,27 +1,47 @@
 import React, { useContext, useState } from 'react';
 import { BookContext } from '../context/BookContext';
+import { NotificationContext } from '../context/Notification';
+import { Form, Button } from 'react-bootstrap';
+import AddTodoModal from './Modal';
 
 const NewBookForm = () => {
-    const { dispatch } = useContext(BookContext);
+    const { dispatchBook } = useContext(BookContext);
+    const { dispatchNotification } = useContext(NotificationContext);
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
+    const [show, setShow] = useState(false);
     const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch({type: 'ADD_BOOK', book: {
-            title,
-            author
-        }});
-        setTitle('');
-        setAuthor('');
+        if (title && author) {
+            dispatchBook({type: 'ADD_BOOK', book: {
+                title,
+                author
+            }});
+            dispatchNotification({ type: 'SUCCESS', message: 'Successfully added!' })
+            setShow(false)
+            setTitle('');
+            setAuthor('');
+        } else {
+            dispatchNotification({ type: 'ERROR', message: 'Invalid input field' })
+        }
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="book title" value={title}
-            onChange={(e) => setTitle(e.target.value)} required />
-            <input type="text" placeholder="author" value={author}
-            onChange={(e) => setAuthor(e.target.value)} required />
-            <input type="submit" value="Add Book" />
-        </form>
+        <>
+            <Form>
+                <Button variant="primary" onClick={() => setShow(true)} block>
+                    Add Book
+                </Button>
+            </Form>
+            { show ? 
+            <AddTodoModal
+                open={true}
+                handleClose={() => setShow(false)}
+                title={title}
+                setTitle={setTitle}
+                author={author}
+                setAuthor={setAuthor}
+                handleSubmit={handleSubmit}
+            /> : null}
+        </>
     );
 }
  
