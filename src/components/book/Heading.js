@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { BookContext } from '../../context/BookContext';
 
-const Navbar = () => {
+const Heading = () => {
     const { books } = useContext(BookContext);
     return (
         <div className="navbar-main text-center">
@@ -11,4 +11,4 @@ const Navbar = () => {
     );
 }
  
-export default Navbar;
+export default Heading;

@@ -1,13 +1,13 @@
 import React from 'react';
 import BookForm from './BookForm';
 import BookList from './BookList';
-import Navbar from './Navbar';
+import Heading from './Heading';
 import BookContextProvider from '../../context/BookContext';
 
 const BookPage = () => {
     return (
         <BookContextProvider>
-            <Navbar />
+            <Heading />
             <BookList />
             <BookForm />
         </BookContextProvider>

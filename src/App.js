@@ -4,6 +4,7 @@ import BookPage from './components/book/';
 import LoginPage from './components/login/Login';
 import { LoginContext } from './context/LoginContext';
 import AuthContext from './context/AuthContext';
+import Navigation from './components/Navbar';
 
 const App = () => {
   const { responseGoogle, profile } = useContext(LoginContext);
@@ -11,6 +12,7 @@ const App = () => {
     <Router>
       <Switch>
         <React.Fragment>
+          <Navigation showLogout={localStorage.getItem('email') ? true : false}/>
           <Route exact path="/" render={props => (<LoginPage {...props} auth={{responseGoogle, profile}}/>)} />
           <div className="App">
             <Route exact path="/home" component={AuthContext(BookPage)} />

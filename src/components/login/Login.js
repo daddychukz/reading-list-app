@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
 import { Redirect } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
@@ -13,18 +12,7 @@ class LoginPage extends React.Component {
     render() { 
     return (
         <>
-        <Navbar bg="light" variant="light">
-            <Navbar.Brand to="/home">
-            <img
-                alt=""
-                src="/reading.svg"
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-            />{' '}
-                Reading List App
-            </Navbar.Brand>
-        </Navbar>
+        {/* <Navigation /> */}
         <img className="wave" alt="" src="/wave.png"/>
             <div className="container">
                 <div className="img">
