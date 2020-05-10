@@ -16,8 +16,8 @@ const AddTodoModal = ({ open, handleClose, title, setTitle, author, setAuthor, h
                         <Form.Control type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control type="text" placeholder="description" value={author} onChange={(e) => setAuthor(e.target.value)} />
+                        <Form.Label>Author</Form.Label>
+                        <Form.Control type="text" placeholder="author" value={author} onChange={(e) => setAuthor(e.target.value)} />
                     </Form.Group>
                 </Form>
             </Modal.Body>

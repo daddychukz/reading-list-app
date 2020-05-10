@@ -1,22 +1,19 @@
 import React from 'react';
-import BookContextProvider from './context/BookContext';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import BookPage from './components/book/';
+import LoginPage from './components/login/Login';
 import NotificationContextProvider from './context/Notification';
-import Navbar from './components/Navbar';
-import BookList from './components/BookList';
-import NewBookForm from './components/BookForm';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <BookContextProvider>
-        <Navbar />
-        <NotificationContextProvider>
-          <BookList />
-          <NewBookForm />
-        </NotificationContextProvider>
-      </BookContextProvider>
-    </div>
+    <Router>
+      <NotificationContextProvider>
+        <Route exact path="/" component={LoginPage} />
+      </NotificationContextProvider>
+      <div className="App">
+        <Route exact path="/home" component={BookPage} />
+      </div>
+    </Router>
   );
 }
 

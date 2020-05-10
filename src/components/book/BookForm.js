@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { BookContext } from '../context/BookContext';
-import { NotificationContext } from '../context/Notification';
+import { BookContext } from '../../context/BookContext';
+import { NotificationContext } from '../../context/Notification';
 import { Form, Button } from 'react-bootstrap';
-import AddTodoModal from './Modal';
+import AddTodoModal from '../modal/Modal';
 
 const NewBookForm = () => {
     const { dispatchBook } = useContext(BookContext);
@@ -27,7 +27,7 @@ const NewBookForm = () => {
     return (
         <>
             <Form>
-                <Button variant="primary" onClick={() => setShow(true)} block>
+                <Button variant="dark" onClick={() => setShow(true)}>
                     Add Book
                 </Button>
             </Form>

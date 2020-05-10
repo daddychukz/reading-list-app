@@ -5,20 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #553055 !important;
+  background-color: #EDFAF5 !important ;
 }
 
 .App{
-  background: #4c2a4c;
+  background: #9DE4C9;
   margin: 20px auto;
   width: 90%;
   max-width: 700px;
-  color: #eee;
+  color: #fff;
 }
 .navbar-main{
   padding: 10px 20px;
   text-align: center;
-  background: #6d3d6d
+  background: #2AC28E
 }
 .navbar-main h1{
   margin: 10px 0;
@@ -31,7 +31,7 @@ body {
   list-style-type: none;
 }
 .book-list li{
-  background: #6d3d6d;
+  background: #2AC38E;
   border-radius: 4px;
   padding: 10px;
   cursor: pointer;
