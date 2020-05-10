@@ -1,24 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
+import { Redirect } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
-import { NotificationContext } from '../../context/Notification';
 
-const LoginPage = () => {
-    const [profile, setProfile] = useState({ name: "", email: "", imageUrl: "", isAuthenticated: false });
-    const { dispatchNotification } = useContext(NotificationContext);
-    const responseGoogle = (response) => {
-        if (!response.error) {
-            setProfile({
-                name: response.profileObj.name,
-                email: response.profileObj.email,
-                imageUrl: response.profileObj.imageUrl,
-                isAuthenticated: true
-            })
-        } else {
-            dispatchNotification({ type: 'ERROR', message: response.error })
+class LoginPage extends React.Component {
+    componentDidMount() {
+        const email = localStorage.getItem('email');
+        if (email) {
+            this.props.history.push('/home');
         }
-      }
-
+    }
+    render() { 
     return (
         <>
         <Navbar bg="light" variant="light">
@@ -41,11 +33,9 @@ const LoginPage = () => {
                 <div className="login-content">
                     <form action="index.html">
                         
-                        { profile.isAuthenticated ?
+                        { this.props.auth.profile.isAuthenticated ?
                             <>
-                                <img alt="" className="mb-2" src={profile.imageUrl}/><br/>
-                                <h3> Welcome {profile.name}</h3>
-                                <h3>{profile.email}</h3>
+                                <Redirect to="/home" />
                             </> : 
                             <>
                             <img alt="" className="mb-2" src="/avatar.svg"/><br/>
@@ -54,8 +44,8 @@ const LoginPage = () => {
                         <GoogleLogin
                             clientId="836665779366-toahgnmpr6h48p47gs1l1cf3v3ncbphn.apps.googleusercontent.com"
                             buttonText="LOGIN"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
+                            onSuccess={this.props.auth.responseGoogle}
+                            onFailure={this.props.auth.responseGoogle}
                             cookiePolicy={'single_host_origin'}
                         />
                         
@@ -64,6 +54,8 @@ const LoginPage = () => {
             </div>
         </>
     );
+    }
 }
  
+
 export default LoginPage;

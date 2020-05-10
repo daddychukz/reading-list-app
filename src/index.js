@@ -4,10 +4,16 @@ import './index.css';
 import './login.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import LoginContextProvider from './context/LoginContext';
+import NotificationContextProvider from './context/Notification';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <NotificationContextProvider>
+      <LoginContextProvider>
+        <App />
+      </LoginContextProvider>
+    </NotificationContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
