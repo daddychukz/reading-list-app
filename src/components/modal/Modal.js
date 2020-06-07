@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const AddTodoModal = ({ open, handleClose, title, setTitle, author, setAuthor, handleSubmit }) => {
+const AddTodoModal = ({ open, handleClose, book, setBook, handleSubmit }) => {
     
     return (
       <>
@@ -13,11 +13,21 @@ const AddTodoModal = ({ open, handleClose, title, setTitle, author, setAuthor, h
                 <Form>
                     <Form.Group>
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                        <Form.Control 
+                            type="text" 
+                            placeholder="title" 
+                            value={book.title} 
+                            onChange={(e) => setBook({...book, Title: e.target.value})} 
+                        />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Author</Form.Label>
-                        <Form.Control type="text" placeholder="author" value={author} onChange={(e) => setAuthor(e.target.value)} />
+                        <Form.Control 
+                            type="text" 
+                            placeholder="author" 
+                            value={book.author} 
+                            onChange={(e) => setBook({...book, Author: e.target.value})} 
+                        />
                     </Form.Group>
                 </Form>
             </Modal.Body>

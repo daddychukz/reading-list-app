@@ -13,8 +13,10 @@ const LoginContextProvider = ({children}) => {
     const { dispatchNotification } = useContext(NotificationContext);
 
     const responseGoogle = (response) => {
+        console.log(response)
         if (!response.error) {
           localStorage.setItem('email', response.profileObj.email)
+          localStorage.setItem('tokenId', response.tokenId)
             setProfile({
                 name: response.profileObj.name,
                 email: response.profileObj.email,
@@ -25,8 +27,6 @@ const LoginContextProvider = ({children}) => {
             dispatchNotification({ type: 'ERROR', message: response.error })
         }
     }
-    
-    
 
       return (
         <LoginContext.Provider value={{profile, setProfile, responseGoogle}}>

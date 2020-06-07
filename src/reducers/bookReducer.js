@@ -1,16 +1,17 @@
-import uuid from 'uuid/dist/v1';
 
 export const bookReducer = (state, action) => {
     switch(action.type) {
         case 'ADD_BOOK':
             return [...state, {
-                title: action.book.title,
-                author: action.book.author,
-                id: uuid()
+                Title: action.book.Title,
+                Author: action.book.Author,
+                ID: action.book.ID
             }]
+        case 'GET_BOOKS':
+            return action.books;
         case 'REMOVE_BOOK':
-            return state.filter(book => book.id !== action.id)
+            return state.filter(book => book.ID !== action.ID)
         default:
-            return state
+            throw new Error()
     }
 }

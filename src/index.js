@@ -8,13 +8,11 @@ import LoginContextProvider from './context/LoginContext';
 import NotificationContextProvider from './context/Notification';
 
 ReactDOM.render(
-  <React.StrictMode>
     <NotificationContextProvider>
       <LoginContextProvider>
         <App />
       </LoginContextProvider>
-    </NotificationContextProvider>
-  </React.StrictMode>,
+    </NotificationContextProvider>,
   document.getElementById('root')
 );
 

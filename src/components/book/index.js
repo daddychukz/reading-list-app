@@ -6,11 +6,13 @@ import BookContextProvider from '../../context/BookContext';
 
 const BookPage = () => {
     return (
-        <BookContextProvider>
-            <Heading />
-            <BookList />
-            <BookForm />
-        </BookContextProvider>
+        <div className="App">
+            <BookContextProvider>
+                <Heading />
+                <BookList />
+                <BookForm />
+            </BookContextProvider>
+        </div>
     );
 }
  

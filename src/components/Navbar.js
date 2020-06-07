@@ -5,6 +5,7 @@ const Navigation = (props) => {
     const [logout, setLogout] = useState(false);
     const logoutUser = () => {
         localStorage.removeItem('email');
+        localStorage.removeItem('tokenId');
         setLogout(true);
     }
     return (

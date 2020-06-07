@@ -1,17 +1,32 @@
 import React, {useContext} from 'react';
 import { BookContext } from '../../context/BookContext';
-import { NotificationContext } from '../../context/Notification';
+// import { NotificationContext } from '../../context/Notification';
 
 const BookDetails = ({ book }) => {
-    const { dispatchBook } = useContext(BookContext);
-    const { dispatchNotification } = useContext(NotificationContext);
+    const { docClient, dispatchBook } = useContext(BookContext);
+    // const { dispatchNotification } = useContext(NotificationContext);
+
+    const removeItem = () => {
+        const params = {
+            TableName: 'reading-list',
+            Key:{
+                "ID": book.ID
+            }
+        };
+        docClient.delete(params, function(err, data) {
+            if (err) {
+                console.error("Unable to delete item. Error JSON:", JSON.stringify(err, null, 2));
+            } else {
+                console.log("Delete Item Succeeded:", JSON.stringify(data, null, 2));
+                dispatchBook({type: 'REMOVE_BOOK', ID: book.ID});
+            }
+        })
+        // dispatchNotification({ type: 'SUCCESS', message: 'Successfully removed!' })
+    }
     return (
-        <li onClick={() => {
-            dispatchBook({type: 'REMOVE_BOOK', id: book.id})
-            dispatchNotification({ type: 'SUCCESS', message: 'Successfully removed!' })
-        }}>
-            <div className="title">{ book.title }</div>
-            <div className="author">{ book.author }</div>
+        <li onClick={removeItem}>
+            <div className="title">{ book.Title }</div>
+            <div className="author">{ book.Author }</div>
         </li>
     );
 }

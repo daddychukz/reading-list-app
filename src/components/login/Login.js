@@ -1,18 +1,18 @@
 import React from 'react';
+import jwtDecode from 'jwt-decode';
 import { Redirect } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 class LoginPage extends React.Component {
     componentDidMount() {
-        const email = localStorage.getItem('email');
-        if (email) {
-            this.props.history.push('/home');
+        const token = localStorage.getItem('tokenId');
+        if (token && (jwtDecode(token).exp > (Date.now() / 1000))) {
+            window.location.replace('/home');
         }
     }
     render() { 
     return (
         <>
-        {/* <Navigation /> */}
         <img className="wave" alt="" src="/wave.png"/>
             <div className="container">
                 <div className="img">
