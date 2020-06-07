@@ -6,5 +6,3 @@ A simple serverless Reading List application with AWS services including the fol
 
 >- AWS Cognito
 >- AWS Dynamodb
->- Lambda Functions
->- AWS Code Deploy
